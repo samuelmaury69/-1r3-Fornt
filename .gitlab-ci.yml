@@ -1,0 +1,151 @@
+stages:
+  - build
+  - test
+  - qa-stable
+  - staging
+  - erase 
+
+test:
+  stage: test
+  tags:
+    - test_runner
+  script:
+    - git clone $CI_REPOSITORY_URL App
+    - cd App
+    - git checkout samuel-new-url
+    - npm install
+    - npm test --watch=false
+
+qa:
+  only:
+   - qa-stable
+  stage: qa-stable
+  tags:
+   - despliegue
+  script:
+    - sudo -u bin mkdir -p $PROJECT_DIR
+    - cd $PROJECT_DIR
+    - if [[ ! -d ./$CI_COMMIT_REF_NAME  ]]; then
+    - sudo -u bin git clone $CI_REPOSITORY_URL $CI_COMMIT_REF_NAME
+    - cd $CI_COMMIT_REF_NAME
+    - sudo -u bin git checkout qa-stable
+    - sudo -u bin docker-compose up -d
+    - sudo -u bin docker-compose exec -T react npm install
+    - else
+    - cd $CI_COMMIT_REF_NAME
+    - sudo -u bin docker-compose exec -T react npm install
+    - fi
+
+qa_start:
+  only:
+    - qa-stable
+  stage: qa-stable
+  tags:
+    - despliegue
+  script:
+    - cd $PROJECT_DIR/$CI_COMMIT_REF_NAME
+    - sudo -u bin docker-compose start
+    - sudo -u bin docker-compose restart
+    - sudo -u bin docker-compose exec -T react expo login -u $EXPO_USERNAME -p $EXPO_PASSWORD --non-interactive
+    - sudo -u bin docker-compose exec -T -d react expo start --no-dev --tunnel
+  artifacts:
+    name: "sirena.apk"
+    paths:
+      - ./apk/sirena-qa.apk
+    expire_in: 1 week
+
+
+Staging:
+  only:
+    - staging-stable
+  stage: staging
+  tags:
+    - despliegue
+  script:
+    - cd $PROJECT_DIR
+    - sudo -u bin git clone $CI_REPOSITORY_URL $CI_COMMIT_REF_NAME
+    - cd /home/bin/sirena-staging-app
+    - sudo -u bin git checkout staging-stable
+    - sudo -u bin docker-compose up -d
+    - sudo -u bin docker-compose exec -T react npm install
+
+staging_start:
+  only:
+    - staging
+  stage: staging
+  tags:
+    - despliegue
+  script:
+    - cd $CI_COMMIT_REF_NAME
+    - sudo -u bin docker-compose ps
+    - sudo -u bin docker-compose exec -T react sed -i "s/\/\/export const BASE_URL= 'http:\/\/staging.sirena.binaural.com.ve:8480'/export const BASE_URL= 'http:\/\/staging.sirena.binaural.com.ve:8480'/g" ./Config/URLs.js
+    - sudo -u bin docker-compose exec -T react sed -i "s/export const BASE_URL= 'http:\/\/qa2.sirena.binaural.com.ve:8480'/\/\/export const BASE_URL= 'http:\/\/qa2.sirena.binaural.com.ve:8480'/g" ./Config/URLs.js
+    - sudo -u bin docker-compose exec -T react expo login -u $EXPO_USERNAME -p $EXPO_PASSWORD --non-interactive
+    - sudo -u bin docker-compose exec -T -d react expo start --no-dev --tunnel
+  artifacts:
+    name: "sirena-staging.apk"
+    paths:
+      - ./apk/sirena-staging.apk
+    expire_in: 1 week
+  
+erase :
+  stage: erase 
+  tags:
+  - despliegue
+  script:
+  - cd $PROJECT_DIR
+  - if [[ -d ./$CI_COMMIT_REF_NAME  ]]; then
+  - cd ${CI_COMMIT_REF_NAME}
+  - sudo -u $USER_CMD docker-compose down
+  - cd ..
+  - sudo -u $USER_CMD rm -R $CI_COMMIT_REF_NAME
+  - fi
+  rules:
+  - if: '$CI_COMMIT_MESSAGE =~ /\[erase\]/i'
+    when: always
+
+
+    # image: openjdk:8-jdk #Defining the Docker Image
+
+    # variables:
+    #   ANDROID_COMPILE_SDK: "28" #set compile SDK version
+    #   ANDROID_BUILD_TOOLS: "28.0.2" #set build tool version
+    #   ANDROID_SDK_TOOLS:   "4333796" #set SDK tool build number you can find yous here https://developer.android.com/studio/releases/sdk-tools
+
+    # before_script:
+    #   # Fetch the specified SDK tools version to build with
+    #       - wget --quiet --output-document=/tmp/sdk-tools-linux.zip https://dl.google.com/android/repository/sdk-tools-linux-${ANDROID_SDK_TOOLS}.zip
+    #       - unzip /tmp/sdk-tools-linux.zip -d .android
+
+    #       # Set up environment variables
+    #       - export ANDROID_HOME/bin=$PWD/.android
+    #       - export PATH=$PATH:$PWD/.android/platform-tools/
+
+    #       # Install platform tools and Android SDK for the compile target
+    #       - echo y | .android/tools/bin/sdkmanager "platforms;android-${ANDROID_COMPILE_SDK}"
+
+
+    #       - curl -sL https://deb.nodesource.com/setup_10.x | bash #Add Node Repo
+    #       - apt-get install -y nodejs #Install NOde JS
+    #       - npm install -g react-native-cli #Install React-Native CLI
+    #       - npm install #Install npm packages
+    #       - react-native link #Link the resources
+    #       - chmod +x android/gradlew #Provide permission for execution
+
+    # # Define stages
+    # stages:
+    #   - build_release_android
+
+    # build_release_android:
+    #   stage: build_release_android
+    #   script:
+    #     - mkdir /PlayJson #make temp directory named PlayJson in root of project
+    #     - "echo $PLAY_STORE_JSON > /PlayJson/play-store-key.json" # copy git variable value to play-store-key.json file
+    #     - npm run android-bundle # bundle the app (Execute from package.json's script block)
+    #     - npm run android-release #create release app (Execute from package.json's script block)
+    #     - cd android && ./gradlew publishApkRelease  # navigate to android dir & publish app on play store
+    #   only:
+    #     - master #set trigger for CICD if push or merge in master branch
+    #   artifacts:
+    #     paths:
+    #     - ./android/app/build/outputs/  # set artifact path which store your APK file

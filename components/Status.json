@@ -1,0 +1,14 @@
+[{
+	 "send":"send_form",
+    "form":"Full_form",
+    "confirmed":"Confirmed",
+    "scheduled":"Scheduled",
+    "visit":"Realized",
+    "bought":"Buy",
+    "delivery":"Received",
+    "want":"Want",
+    "cr":"CR",
+    "accept":"accept",
+    "pt":"PT",
+    "noaccept":"noaccept"
+}]

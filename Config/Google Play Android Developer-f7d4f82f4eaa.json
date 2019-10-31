@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "api-5702303070133916981-767690",
+  "private_key_id": "f7d4f82f4eaa57bc65040293475dbbbc6a553416",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCm+85+Tgb4RJGQ\nGfagkbzYsdnjMhx/P2r97ZOkm0XhJytbD579S5ssj4wDVrBiI46yPQEEWzxaIUc+\n3P1BCLqI9HlI4OtOk4LKqEjPcjNB9Ejy9i6sT638qpy/DzEvmFHNo3HD5DuTxLx2\n8uag9LjkZ3MRRtnVFiVKqF9sLR7yyLvyg5+eG5z4u5XpRi17nxDc1yiaXBHPAk6J\n6zB2DWm3D4Jxs43yjlKiF/+GMLSoanzecOrkm9KsDxkPRMS5JJ3a4tDPDSVKgtgY\n5QlxTHELguSw4pLvV0i7862t4RbQ/AtL1N6Sw0x8y96WA2PcXcvr+yZA3k93fYbp\n/InetNYdAgMBAAECggEAA+RXlkMMT4oNmH26bVioPaa7jNuUpXSdckiwycPit5I5\npPgyvPWfqsS3vzYsi0UH5OieFvNnbzRaXEE7V+IzstB76TJw2ZZ/lGiitc8UGcPv\nVVZelR6QUBTL7XoVq+XRdkkKdEXkC5goyl7z+ClsC8rLeEod9qT6/of5HWTZ1U/F\nxB1A9o0VTLaDMuD80h1cz611ebKHvn8RnsqDdTRnkp/3wwkyelJMjw6cqsURYTaK\nc+CSWHCTeb42U62YLtV5Wrg7ZHib/wy8PowdVUzSzJ5tvprpEHEN1at57UMn8n2r\nOX17PRL/H7jJiuGpVySEGd5AKrLFFFxCqnjO2TCywQKBgQDd9/ZRdK7gUPt6wHIz\nHIfYA0XsYJ4X4Q1XlXxDgJWqGHT+RvY+mCcUil0hLlUDtR2OXZPJA5EoUeDljOBT\ntXmn56KUbka76lHkNHBjKtN9aeU17KuH0ZSxPES4FFjRIxDStFLPupUzOIlm8WTo\nmPg+xqW1mFLHqLNrSuNkjtu6PQKBgQDAlb2krE7YrXrnjwd60LBU6kgOBvXLgGG2\ntLmhgUOp/rZFp1pCcfzXIVaGoKNwNkSGMJUHkJwRSQ3teTAXcoFINNl7W/+REaJy\nzC2cEPvTdoGMvTvgEcHgB4zWeJYQRqlSChueoYFGpeXpPlo7xyZT2Rpw6xcscnjS\nAjwJEpWpYQKBgBGLU9DEZD4eqIHfTCd2DdapC5HPYS+J/j/59MRxGWNEY5rliPkR\nlaUt+oZw3w9X9WoXQ2MUARkqv5flNqXnJiJ7UIJi5PxdXPOooWl1LRowkIlel4A4\ntIP9u4DBOvPszZuZ3SHGIZzWzyVv1wX7cUOk99wOmhxl3SiR1r9P+1YRAoGAaGDA\nKEA7e7SKqHYc17PD3kIcS336OhGa5CuPcLleswQaRiYuBVVCdFbdTppB+s9u1EwA\nedkmvTebFNpZ9ltZNoluVi3Glhm4sf93uN57nmDcVis6CHeXXJS7AILa0nd5zb0s\nuw1Nw7ymn4Pr4/pMC6XfbtP7+1sPoMMVRtWLyAECgYBSfoPifybNx4qAXMQFYt3S\no79NJi98KkJVFlqqysqV5TzEtum3RvDI2gyzY1FBDgbMxlYMfYFzfOA8zlTM+XrS\nUrYBdnNf+aRO0n8OwpKKRgF9Ug38HxWkjnD6vuVqbYvlJYVb0izzA3Cvs5vC/grU\neTjpLMXareHIayBCjiFCuA==\n-----END PRIVATE KEY-----\n",
+  "client_email": "sireana-ci-cd@api-5702303070133916981-767690.iam.gserviceaccount.com",
+  "client_id": "111376509821693409482",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/sireana-ci-cd%40api-5702303070133916981-767690.iam.gserviceaccount.com"
+}

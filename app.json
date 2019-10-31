@@ -1,0 +1,61 @@
+{
+  "expo": {
+    "name": "SirenaLifeStyle",
+    "slug": "SirenaLifeStyle",
+    "privacy": "unlisted",
+    "sdkVersion": "33.0.0",
+    "platforms": [
+      "ios",
+      "android"
+    ],
+    "version": "1.0.13",
+    "orientation": "portrait",
+    "icon": "./assets/images/logo-lifestyle.png",
+    "splash": {
+      "image": "./assets/images/logo-sirena-lifestyle.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "notification": {
+      "icon": "./assets/images/logo-lifestyle.png",
+      "color": "#000000",
+      //"androidMode": "collapse",
+      "androidCollapsedTitle": "#{unread_notifications} notificaciones pendientes"
+    },
+    "ios": {
+      "bundleIdentifier": "com.sirena.app",
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "Allow SirenaLifeStyle access to your camera to take the photographs of you and share them in your links",
+        "NSContactsUsageDescription": "Allow Sirena LifeStyle to access your contacts to send them your invitation link and earn money. Contacts will be stored in our database for avoid duplicates users, as well as being able to see them in the application.",
+        "NSPhotoLibraryUsageDescription":"Allow Sirena LifeStyle to access your image gallery to select a photo, place it on your profile and share it with your contacts",
+        "LSApplicationQueriesSchemes": ["fb-messenger", "whatsapp"]
+      }
+    },
+    "android": {
+      "versionCode": 8,
+      "package": "com.sirenalifestyle.app",
+      "permissions": [
+        "CAMERA",
+        "READ_INTERNAL_STORAGE",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE",
+        "READ_CONTACTS"
+      ],
+      //"publishBundlePath": "android/app/src/main/assets/shell-app.bundle",
+      //"publishManifestPath": "android/app/src/main/assets/shell-app-manifest.json"
+    },
+    "description": "",
+   /* "isDetached": true,
+    "detach": {
+      "androidExpoViewUrl": "https://s3.amazonaws.com/exp-exponent-view-code/android-v2.10.7-sdk32.0.0-3ff7f3bf-8e53-4d61-b963-1d7d92a77d79.tar.gz"
+    },*/
+   
+  }
+}
